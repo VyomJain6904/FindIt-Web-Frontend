@@ -5,7 +5,7 @@ export default function TechCircle() {
 		<div className="relative flex items-center justify-center h-[500px] w-full">
 			<RotatingCircle path={true} iconSize={60} radius={250}>
 				<img src="typescript.svg" alt="Typescript" />
-				<img src="rust.svg" alt="Rust" />
+				<img src="golang.svg" alt="Golang" />
 				<img src="python.svg" alt="Python" />
 				<img src="nextjs.svg" alt="NextJS" />
 				<img src="nmap.svg" alt="Nmap" />
