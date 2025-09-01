@@ -13,7 +13,7 @@ export function LoginButton() {
 				<Button
 					onClick={() => console.log("Login button clicked")}
 					borderRadius="10rem"
-					className="bg-black text-white text-sm sm:text-base md:text-lg px-4 py-2 sm:px-6 sm:py-2 hover:bg-gray-800 transition-colors duration-200 cursor-pointer"
+					className="bg-black text-white text-sm sm:text-base md:text-lg px-4 py-2 sm:px-6 sm:py-2 hover:bg-yellow-500/50 transition-colors duration-200 cursor-pointer"
 				>
 					Login
 				</Button>

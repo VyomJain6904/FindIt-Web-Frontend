@@ -342,7 +342,7 @@ export function DataTable<TData, TValue>({
 	return (
 		<div className="w-full space-y-6 p-6 bg-black min-h-screen text-white">
 			{/* Header Section */}
-			<div className="bg-black rounded-xl shadow-2xl p-6 border border-gray-700">
+			<div className="bg-black rounded-xl shadow-2xl p-6 border border-yellow-500/50">
 				<div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
 					<div>
 						<h2 className="text-2xl font-bold text-white mb-2">{title}</h2>
@@ -358,7 +358,7 @@ export function DataTable<TData, TValue>({
 						<Button
 							onClick={exportToJSON}
 							disabled={isLoading || totalRecords === 0}
-							className="bg-black text-white hover:bg-green-800 transition-all duration-200 shadow-lg flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+							className="bg-black text-white hover:bg-yellow-500/50 transition-all duration-200 shadow-lg flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
 						>
 							<Download size={16} />
 							Export JSON
@@ -366,7 +366,7 @@ export function DataTable<TData, TValue>({
 						<Button
 							onClick={exportToPDF}
 							disabled={isLoading || totalRecords === 0}
-							className="bg-black text-white hover:bg-blue-800 transition-all duration-200 shadow-lg flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+							className="bg-black text-white hover:bg-yellow-500/50 transition-all duration-200 shadow-lg flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
 						>
 							<FileText size={16} />
 							Export PDF

@@ -20,7 +20,7 @@ export default function CustomSpotlightCard() {
 			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-7xl mt-50">
 				<SpotlightCard
 					className="Custom SpotlightCard"
-					spotlightColor="rgba(45, 124, 244, 0.5)"
+					spotlightColor = "rgba(255, 200, 0, 0.5)"
 				>
 					<IconSearch className="text-4xl text-blue-400 mb-4" />
 					<h1 className="text-xl font-semibold text-white mb-2">
@@ -36,7 +36,7 @@ export default function CustomSpotlightCard() {
 
 				<SpotlightCard
 					className="Custom SpotlightCard"
-					spotlightColor="rgba(45, 124, 244, 0.5)"
+					spotlightColor = "rgba(255, 200, 0, 0.5)"
 				>
 					<IconNetwork className="text-4xl text-green-400 mb-4" />
 					<h1 className="text-xl font-semibold text-white mb-2">
@@ -54,7 +54,7 @@ export default function CustomSpotlightCard() {
 
 				<SpotlightCard
 					className="Custom SpotlightCard"
-					spotlightColor="rgba(45, 124, 244, 0.5)"
+					spotlightColor = "rgba(255, 200, 0, 0.5)"
 				>
 					<IconServer className="text-4xl text-purple-400 mb-4" />
 					<h1 className="text-xl font-semibold text-white mb-2">
@@ -72,7 +72,7 @@ export default function CustomSpotlightCard() {
 
 				<SpotlightCard
 					className="Custom SpotlightCard"
-					spotlightColor="rgba(45, 124, 244, 0.5)"
+					spotlightColor = "rgba(255, 200, 0, 0.5)"
 				>
 					<IconShield className="text-4xl text-red-400 mb-4" />
 					<h1 className="text-xl font-semibold text-white mb-2">
@@ -92,7 +92,7 @@ export default function CustomSpotlightCard() {
 			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-7xl">
 				<SpotlightCard
 					className="Custom SpotlightCard"
-					spotlightColor="rgba(45, 124, 244, 0.5)"
+					spotlightColor = "rgba(255, 200, 0, 0.5)"
 				>
 					<IconWorld className="text-4xl text-yellow-400 mb-4" />
 					<h1 className="text-xl font-semibold text-white mb-2">
@@ -110,7 +110,7 @@ export default function CustomSpotlightCard() {
 
 				<SpotlightCard
 					className="Custom SpotlightCard"
-					spotlightColor="rgba(45, 124, 244, 0.5)"
+					spotlightColor = "rgba(255, 200, 0, 0.5)"
 				>
 					<IconBug className="text-4xl text-orange-400 mb-4" />
 					<h1 className="text-xl font-semibold text-white mb-2">
@@ -128,7 +128,7 @@ export default function CustomSpotlightCard() {
 
 				<SpotlightCard
 					className="Custom SpotlightCard"
-					spotlightColor="rgba(45, 124, 244, 0.5)"
+					spotlightColor = "rgba(255, 200, 0, 0.5)"
 				>
 					<IconCloud className="text-4xl text-cyan-400 mb-4" />
 					<h1 className="text-xl font-semibold text-white mb-2">
@@ -146,7 +146,7 @@ export default function CustomSpotlightCard() {
 
 				<SpotlightCard
 					className="Custom SpotlightCard"
-					spotlightColor="rgba(45, 124, 244, 0.5)"
+					spotlightColor = "rgba(255, 200, 0, 0.5)"
 				>
 					<IconLock className="text-4xl text-indigo-400 mb-4" />
 					<h1 className="text-xl font-semibold text-white mb-2">

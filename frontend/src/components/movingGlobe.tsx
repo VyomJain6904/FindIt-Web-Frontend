@@ -16,18 +16,18 @@ const World = dynamic(
 export function MovingGlobe() {
 	const globeConfig = {
 		pointSize: 4,
-		globeColor: "#062056",
+		globeColor: "#4a4a4a", // pure black globe
 		showAtmosphere: true,
-		atmosphereColor: "#FFFFFF",
-		atmosphereAltitude: 0.1,
-		emissive: "#062056",
+		atmosphereColor: "#FFD700", // soft golden glow
+		atmosphereAltitude: 0.12,
+		emissive: "#2B1B00", // dark golden-brown for subtle glow
 		emissiveIntensity: 0.2,
-		shininess: 0.9,
-		polygonColor: "rgba(255,255,255,0.7)",
-		ambientLight: "#38bdf8",
-		directionalLeftLight: "#ffffff",
-		directionalTopLight: "#ffffff",
-		pointLight: "#ffffff",
+		shininess: 0.5, // strong reflections
+		polygonColor: "rgba(255, 215, 0, 0.8)", // golden lines
+		ambientLight: "#B8860B", // dark golden light
+		directionalLeftLight: "#FFD700", // gold highlight
+		directionalTopLight: "#FFF8DC", // softer warm gold
+		pointLight: "#FFD700", // glowing golden light
 		arcTime: 1000,
 		arcLength: 0.9,
 		rings: 1,
@@ -36,7 +36,9 @@ export function MovingGlobe() {
 		autoRotate: true,
 		autoRotateSpeed: 0.5,
 	};
-	const colors = ["#06b6d4", "#3b82f6", "#6366f1"];
+
+	// glowing golden dots & arcs
+	const colors = ["#FFD700", "#FFA500", "#FFB700"];
 	const sampleArcs = [
 		{
 			order: 1,

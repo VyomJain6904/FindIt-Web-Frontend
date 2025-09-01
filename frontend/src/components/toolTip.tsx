@@ -8,7 +8,7 @@ const people = [
 	{
 		id: 1,
 		name: "Vyom Jain",
-		designation: "Cybersecurity Engineer",
+		designation: "Security Engineer",
 		image: "me.jpg",
 	},
 ];
