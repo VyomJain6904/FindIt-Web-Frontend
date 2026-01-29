@@ -1,5 +1,4 @@
 import { MovingGlobe } from "@/components/aceternity/MovingGlobe";
-import { SearchDomainBox } from "@/components/aceternity/SearchBox";
 import { GridBackground } from "@/components/ui/gridBackground";
 import { Tooltip } from "@/components/custom/toolTip";
 import CustomSpotlightCard from "@/components/aceternity/SpotlightCard";
@@ -10,20 +9,19 @@ import ContactUs from "@/components/custom/ContactUs";
 import { PricingSection } from "@/components/custom/PricingSection";
 
 export default function Home() {
-	return (
-		<div className="relative min-h-screen bg-background text-foreground overflow-hidden">
-			<Banner />
-			<ResizableNavbar hasBanner={true} />
-			<div className="flex flex-col items-center justify-start space-y-12 px-4 pt-10 pb-20">
-				<MovingGlobe />
-				<SearchDomainBox />
-				<CustomSpotlightCard />
-				<GridBackground />
-				<PricingSection />
-				<Tooltip />
-				<ContactUs />
-			</div>
-			<Footer />
-		</div>
-	);
+  return (
+    <div className="relative min-h-screen bg-background text-foreground overflow-hidden">
+      <Banner />
+      <ResizableNavbar hasBanner={true} />
+      <div className="flex flex-col items-center justify-start space-y-12 px-4 pt-10 pb-20">
+        <MovingGlobe />
+        <CustomSpotlightCard />
+        <GridBackground />
+        <PricingSection />
+        <Tooltip />
+        <ContactUs />
+      </div>
+      <Footer />
+    </div>
+  );
 }

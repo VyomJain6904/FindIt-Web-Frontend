@@ -1,4 +1,4 @@
-import { LiveScanTerminal } from "@/components/scanPageUI/LiveScanTerminal";
+// import { LiveScanTerminal } from "@/components/scanPageUI/LiveScanTerminal";
 import { ArrowLeft, Share2, Download } from "lucide-react";
 import Link from "next/link";
 
@@ -44,7 +44,7 @@ export default async function LiveScanPage({ params }: LivePageProps) {
 
 			{/* Terminal Container */}
 			<div className="h-[calc(100vh-140px)]">
-				<LiveScanTerminal scanId={scanId} className="h-full" />
+				{/* <LiveScanTerminal scanId={scanId} className="h-full" /> */}
 			</div>
 		</div>
 	);
