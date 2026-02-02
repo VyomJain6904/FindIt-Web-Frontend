@@ -13,10 +13,13 @@ import {
 	HeadersResults,
 	TLSResults,
 	DirectoryResults,
+	CloudResults,
 	NucleiResults,
 } from "@/components/scan";
 import { LocalErrorBoundary, ConnectionBanner } from "@/components/error";
 import { DemoBanner } from "@/components/demo";
+import { usePermissions } from "@/hooks/usePermissions";
+import { useScanSocket } from "@/lib/websocket/useScanSocket";
 import {
 	isDemoMode,
 	DEMO_SCAN_STATE,
@@ -27,6 +30,7 @@ import {
 	DEMO_HEADERS,
 	DEMO_TLS,
 	DEMO_DIRECTORIES,
+	DEMO_CLOUD_ASSETS,
 	DEMO_NUCLEI,
 	DEMO_LOGS,
 	DEMO_FEATURE_FLAGS,
@@ -48,6 +52,7 @@ import type {
 	DirectoryResultWithAI,
 	NucleiResultWithAI,
 } from "@/types/ai-context";
+import type { CloudResultWithAI } from "@/types/cloud";
 
 interface ScanPageProps {
 	params: Promise<{ scanId: string }>;
@@ -92,14 +97,17 @@ const PLACEHOLDER_FEATURES: FeatureFlags = {
 	deep_scan: false,
 	custom_scan: false,
 	custom_wordlist: false,
+	cloud_enumeration: false,
 };
 
 export default function ScanResultsPage({ params }: ScanPageProps) {
 	const [scanId, setScanId] = useState<string>("");
 	const [activeTab, setActiveTab] = useState<TabId>("subdomains");
 	const [perspective, setPerspective] = useState<Perspective>("neutral");
-	const [isConnected, setIsConnected] = useState(false);
-	const [logs, setLogs] = useState<ScanLogPayload[]>([]);
+	const [isDemoScan, setIsDemoScan] = useState(false);
+
+	// Get permissions from subscription
+	const { getDisabledScanTabs, getUpgradeMessage } = usePermissions();
 
 	// Use demo data if in demo mode
 	const isDemo = isDemoMode();
@@ -146,6 +154,7 @@ export default function ScanResultsPage({ params }: ScanPageProps) {
 		directories: (isDemo
 			? DEMO_DIRECTORIES
 			: []) as DirectoryResultWithAI[],
+		cloud: (isDemo ? DEMO_CLOUD_ASSETS : []) as CloudResultWithAI[],
 		vulnerabilities: (isDemo ? DEMO_NUCLEI : []) as NucleiResultWithAI[],
 	});
 
@@ -157,6 +166,7 @@ export default function ScanResultsPage({ params }: ScanPageProps) {
 		headers: !isDemo,
 		tls: !isDemo,
 		directories: !isDemo,
+		cloud: !isDemo,
 		vulnerabilities: !isDemo,
 	});
 
@@ -165,28 +175,58 @@ export default function ScanResultsPage({ params }: ScanPageProps) {
 		{},
 	);
 
-	// Demo mode: simulate log streaming
+	// WebSocket Hook
+	const socket = useScanSocket({
+		scanId,
+		enabled: !!scanId,
+	});
+
+	// Sync logs and connection status
+	const isConnected = socket.isConnected;
+	const logs = socket.logs;
+
+	// Sync progress
 	useEffect(() => {
-		if (isDemo) {
-			setIsConnected(true);
-			let logIndex = 0;
-			const interval = setInterval(() => {
-				if (logIndex < DEMO_LOGS.length) {
-					setLogs((prev) => [...prev, DEMO_LOGS[logIndex]]);
-					logIndex++;
-				} else {
-					clearInterval(interval);
-				}
-			}, 600);
-			return () => clearInterval(interval);
+		if (socket.progress) {
+			setProgress(socket.progress);
 		}
-	}, [isDemo]);
+	}, [socket.progress]);
 
 	// Resolve params
 	useEffect(() => {
 		params.then((p) => {
 			setScanId(p.scanId);
-			if (!isDemo) {
+			const demoOverride = p.scanId === "scan-demo-001";
+			setIsDemoScan(demoOverride);
+
+			if (isDemo || demoOverride) {
+				// Ensure demo data is loaded if forced via ID
+				setScan(DEMO_SCAN_STATE);
+				// Results already loaded via initial state if isDemo is true,
+				// but if only demoOverride is true (and isDemo false), we need to set them:
+				if (!isDemo && demoOverride) {
+					setResults({
+						subdomains: DEMO_SUBDOMAINS,
+						ports: DEMO_PORTS,
+						technologies: DEMO_TECHNOLOGIES,
+						headers: DEMO_HEADERS,
+						tls: DEMO_TLS,
+						directories: DEMO_DIRECTORIES,
+						cloud: DEMO_CLOUD_ASSETS,
+						vulnerabilities: DEMO_NUCLEI,
+					});
+					setLoading({
+						subdomains: false,
+						ports: false,
+						technologies: false,
+						headers: false,
+						tls: false,
+						directories: false,
+						cloud: false,
+						vulnerabilities: false,
+					});
+				}
+			} else {
 				setScan((prev) => ({ ...prev, id: p.scanId }));
 				setProgress((prev) => ({ ...prev, scanId: p.scanId }));
 				// Simulate loading complete after mount
@@ -198,6 +238,7 @@ export default function ScanResultsPage({ params }: ScanPageProps) {
 						headers: false,
 						tls: false,
 						directories: false,
+						cloud: false,
 						vulnerabilities: false,
 					});
 				}, 1500);
@@ -271,6 +312,15 @@ export default function ScanResultsPage({ params }: ScanPageProps) {
 						error={errors.directories}
 					/>
 				);
+			case "cloud":
+				return (
+					<CloudResults
+						results={results.cloud}
+						perspective={perspective}
+						loading={loading.cloud}
+						error={errors.cloud}
+					/>
+				);
 			case "vulnerabilities":
 				return (
 					<NucleiResults
@@ -287,10 +337,10 @@ export default function ScanResultsPage({ params }: ScanPageProps) {
 
 	return (
 		<div
-			className={`p-3 sm:p-6 space-y-4 sm:space-y-6 min-h-screen bg-black ${isDemo ? "pt-16" : ""}`}
+			className={`p-3 sm:p-6 space-y-4 sm:space-y-6 min-h-screen bg-black ${isDemo || isDemoScan ? "pt-16" : ""}`}
 		>
 			{/* Demo Banner */}
-			<DemoBanner />
+			{(isDemo || isDemoScan) && <DemoBanner />}
 
 			{/* Connection Banner */}
 			<ConnectionBanner isConnected={isConnected} />
@@ -338,8 +388,10 @@ export default function ScanResultsPage({ params }: ScanPageProps) {
 					headers: results.headers.length,
 					tls: results.tls.length,
 					directories: results.directories.length,
+					cloud: results.cloud.length,
 					vulnerabilities: results.vulnerabilities.length,
 				}}
+				disabledTabs={getDisabledScanTabs()}
 			/>
 
 			{/* Tab Content - Each worker wrapped independently */}

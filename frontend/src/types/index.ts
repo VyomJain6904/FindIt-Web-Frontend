@@ -76,3 +76,6 @@ export type {
 	ErrorEventPayload,
 	WSEventMap,
 } from "./websocket";
+
+// Cloud types
+export type { CloudAsset, CloudResultWithAI } from "./cloud";

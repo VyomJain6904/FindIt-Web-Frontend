@@ -12,7 +12,7 @@ interface PortResultsProps {
 	error?: string;
 }
 
-const ROW_HEIGHT = 48;
+const ROW_HEIGHT = 40;
 const TABLE_HEIGHT = 500;
 
 /** Memoized port row */
@@ -29,7 +29,7 @@ const PortRow = memo(function PortRow({
 
 	return (
 		<div className="flex items-center hover:bg-zinc-800/50 border-b border-zinc-800/50">
-			<div className="px-4 py-3 w-20 font-mono text-sm text-zinc-100">
+			<div className="px-4 py-2 w-20 font-mono text-sm text-zinc-100">
 				<span
 					className={
 						perspective === "attacker" && hasAI
@@ -40,13 +40,13 @@ const PortRow = memo(function PortRow({
 					{result.port}
 				</span>
 			</div>
-			<div className="px-4 py-3 w-20 text-sm text-zinc-400 uppercase">
+			<div className="px-4 py-2 w-20 text-sm text-zinc-400 uppercase">
 				{result.protocol}
 			</div>
-			<div className="px-4 py-3 flex-1 text-sm text-zinc-300">
+			<div className="px-4 py-2 flex-1 text-sm text-zinc-300 overflow-x-auto whitespace-nowrap [&::-webkit-scrollbar]:h-1.5 [&::-webkit-scrollbar-thumb]:bg-zinc-700/50 [&::-webkit-scrollbar-track]:bg-transparent">
 				{result.service || "—"}
 			</div>
-			<div className="px-4 py-3 w-28 text-sm text-zinc-400">
+			<div className="px-4 py-2 w-28 text-sm text-zinc-400">
 				{result.version || "—"}
 			</div>
 			{perspective !== "neutral" && (
@@ -118,20 +118,20 @@ export function PortResults({
 
 	const header = (
 		<div className="flex">
-			<div className="px-4 py-3 text-left text-xs font-medium text-zinc-400 uppercase w-20">
+			<div className="px-4 py-2 text-left text-xs font-medium text-zinc-400 uppercase w-20">
 				Port
 			</div>
-			<div className="px-4 py-3 text-left text-xs font-medium text-zinc-400 uppercase w-20">
+			<div className="px-4 py-2 text-left text-xs font-medium text-zinc-400 uppercase w-20">
 				Protocol
 			</div>
-			<div className="px-4 py-3 text-left text-xs font-medium text-zinc-400 uppercase flex-1">
+			<div className="px-4 py-2 text-left text-xs font-medium text-zinc-400 uppercase flex-1">
 				Service
 			</div>
-			<div className="px-4 py-3 text-left text-xs font-medium text-zinc-400 uppercase w-28">
+			<div className="px-4 py-2 text-left text-xs font-medium text-zinc-400 uppercase w-28">
 				Version
 			</div>
 			{perspective !== "neutral" && (
-				<div className="px-4 py-3 text-left text-xs font-medium text-zinc-400 uppercase w-48">
+				<div className="px-4 py-2 text-left text-xs font-medium text-zinc-400 uppercase w-48">
 					{perspective === "attacker" ? "Exposure Risk" : "Hardening"}
 				</div>
 			)}

@@ -10,22 +10,32 @@ export function ReportFindingsOverview({ stats }: ReportFindingsOverviewProps) {
 			key: "critical",
 			label: "Critical",
 			color: "bg-red-500",
-			count: stats.critical,
+			count: stats.bySeverity.CRITICAL,
 		},
 		{
 			key: "high",
 			label: "High",
 			color: "bg-orange-500",
-			count: stats.high,
+			count: stats.bySeverity.HIGH,
 		},
 		{
 			key: "medium",
 			label: "Medium",
 			color: "bg-yellow-500",
-			count: stats.medium,
+			count: stats.bySeverity.MEDIUM,
 		},
-		{ key: "low", label: "Low", color: "bg-blue-500", count: stats.low },
-		{ key: "info", label: "Info", color: "bg-zinc-500", count: stats.info },
+		{
+			key: "low",
+			label: "Low",
+			color: "bg-blue-500",
+			count: stats.bySeverity.LOW,
+		},
+		{
+			key: "info",
+			label: "Info",
+			color: "bg-zinc-500",
+			count: stats.bySeverity.INFO,
+		},
 	];
 
 	const maxCount = Math.max(...severities.map((s) => s.count), 1);

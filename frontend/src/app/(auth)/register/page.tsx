@@ -3,6 +3,7 @@ import React from "react";
 import Link from "next/link";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import { GradientButton } from "@/components/ui/GradientButton";
 import { cn } from "@/lib/utils";
 
 export default function RegisterPage() {
@@ -79,13 +80,9 @@ export default function RegisterPage() {
 						/>
 					</LabelInputContainer>
 
-					<button
-						className="group/btn relative block h-12 w-full rounded-xl font-medium text-white bg-[#282a36] hover:bg-[#44475a] transition-colors cursor-pointer"
-						type="submit"
-					>
+					<GradientButton type="submit" className="h-12">
 						Sign up &rarr;
-						<BottomGradient />
-					</button>
+					</GradientButton>
 
 					<div className="my-8 h-[1px] w-full bg-gradient-to-r from-transparent via-border to-transparent" />
 
@@ -110,15 +107,6 @@ export default function RegisterPage() {
 		</div>
 	);
 }
-
-const BottomGradient = () => {
-	return (
-		<>
-			<span className="absolute inset-x-0 -bottom-px block h-px w-full bg-gradient-to-r from-transparent via-[#ff79c6] to-transparent opacity-0 transition duration-500 group-hover/btn:opacity-100" />
-			<span className="absolute inset-x-10 -bottom-px mx-auto block h-px w-1/2 bg-gradient-to-r from-transparent via-[#ff79c6] to-transparent opacity-0 blur-sm transition duration-500 group-hover/btn:opacity-100" />
-		</>
-	);
-};
 
 const SocialButton = ({
 	provider,

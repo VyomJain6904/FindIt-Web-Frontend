@@ -58,7 +58,7 @@ export function TechResults({
 				return (
 					<div
 						key={`${result.technology}-${index}`}
-						className={`bg-zinc-900 rounded-lg border p-4 transition-colors ${
+						className={`bg-zinc-900 rounded-lg border p-3 transition-colors ${
 							perspective === "attacker" && hasAI
 								? "border-red-500/30 hover:border-red-500/50"
 								: perspective === "defender" && hasAI

@@ -51,7 +51,7 @@ export function HeadersResults({
 	const presentHeaders = results.filter((r) => r.present);
 
 	return (
-		<div className="bg-zinc-900 rounded-xl border border-zinc-800 overflow-hidden">
+		<div className="bg-zinc-900 rounded-xl border border-zinc-800 overflow-x-auto whitespace-nowrap [&::-webkit-scrollbar]:h-1.5 [&::-webkit-scrollbar-thumb]:bg-zinc-700/50 [&::-webkit-scrollbar-track]:bg-transparent">
 			{perspective === "attacker" && missingHeaders.length > 0 && (
 				<div className="p-4 bg-red-500/5 border-b border-red-500/20">
 					<div className="flex items-center gap-2 text-red-400 text-sm font-medium">
@@ -73,14 +73,14 @@ export function HeadersResults({
 			<table className="w-full">
 				<thead>
 					<tr className="border-b border-zinc-800">
-						<th className="px-4 py-3 text-left text-xs font-medium text-zinc-400 uppercase">
+						<th className="px-4 py-2 text-left text-xs font-medium text-zinc-400 uppercase">
 							Header
 						</th>
-						<th className="px-4 py-3 text-left text-xs font-medium text-zinc-400 uppercase">
+						<th className="px-4 py-2 text-left text-xs font-medium text-zinc-400 uppercase">
 							Status
 						</th>
 						{perspective !== "neutral" && (
-							<th className="px-4 py-3 text-left text-xs font-medium text-zinc-400 uppercase">
+							<th className="px-4 py-2 text-left text-xs font-medium text-zinc-400 uppercase">
 								{perspective === "attacker"
 									? "Attack Impact"
 									: "Remediation"}
@@ -108,10 +108,10 @@ export function HeadersResults({
 										: ""
 								}`}
 							>
-								<td className="px-4 py-3 font-mono text-sm text-zinc-100">
+								<td className="px-4 py-2 font-mono text-sm text-zinc-100">
 									{result.name}
 								</td>
-								<td className="px-4 py-3">
+								<td className="px-4 py-2">
 									{result.present ? (
 										<span className="inline-flex items-center gap-1 text-emerald-400 text-sm">
 											<Check className="w-4 h-4" />
@@ -125,7 +125,7 @@ export function HeadersResults({
 									)}
 								</td>
 								{perspective !== "neutral" && (
-									<td className="px-4 py-3 text-sm">
+									<td className="px-4 py-2 text-sm">
 										{hasAI ? (
 											perspective === "attacker" ? (
 												<span className="text-red-400 text-xs">

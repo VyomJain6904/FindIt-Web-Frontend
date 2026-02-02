@@ -81,7 +81,8 @@ export function createEventEmitter() {
 			handler: WSEventHandler<T>,
 		): () => void {
 			if (!listeners[type]) {
-				listeners[type] = new Set();
+				// eslint-disable-next-line @typescript-eslint/no-explicit-any
+				listeners[type] = new Set() as any;
 			}
 			(listeners[type] as Set<WSEventHandler<T>>).add(handler);
 

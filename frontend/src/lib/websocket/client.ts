@@ -139,7 +139,8 @@ export function createWSClient(config: WSClientConfig) {
 			ws.onmessage = (event) => {
 				const wsEvent = parseWSEvent(event.data);
 				if (wsEvent) {
-					emitter.emit(wsEvent);
+					// eslint-disable-next-line @typescript-eslint/no-explicit-any
+					emitter.emit(wsEvent as any);
 				}
 			};
 		} catch (err) {

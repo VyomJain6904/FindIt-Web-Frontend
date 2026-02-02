@@ -48,6 +48,8 @@ export interface FeatureFlags {
 	custom_scan: boolean;
 	/** Custom wordlist upload */
 	custom_wordlist: boolean;
+	/** Cloud enumeration available */
+	cloud_enumeration: boolean;
 	/** Additional flags */
 	[key: string]: boolean;
 }

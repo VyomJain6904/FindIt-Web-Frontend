@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { Input } from "@/components/ui/input";
+import { GradientButton } from "@/components/ui/GradientButton";
 import WorldMap from "@/components/custom/map";
 
 export function ContactUs() {
@@ -130,13 +131,9 @@ export function ContactUs() {
 							</div>
 
 							{/* Submit Button */}
-							<button
-								className="group/btn relative block h-10 w-full rounded-xl font-medium text-white bg-zinc-800 from-zinc-900 to-zinc-900 shadow-[0px_1px_0px_0px_#27272a_inset,0px_-1px_0px_0px_#27272a_inset] cursor-pointer"
-								type="submit"
-							>
+							<GradientButton type="submit">
 								Submit &rarr;
-								<BottomGradient />
-							</button>
+							</GradientButton>
 						</form>
 					</div>
 				</div>
@@ -144,14 +141,5 @@ export function ContactUs() {
 		</section>
 	);
 }
-
-const BottomGradient = () => {
-	return (
-		<>
-			<span className="absolute inset-x-0 -bottom-px block h-px w-full bg-gradient-to-r from-transparent via-[#ff79c6] to-transparent opacity-0 transition duration-500 group-hover/btn:opacity-100" />
-			<span className="absolute inset-x-10 -bottom-px mx-auto block h-px w-1/2 bg-gradient-to-r from-transparent via-[#ff79c6] to-transparent opacity-0 blur-sm transition duration-500 group-hover/btn:opacity-100" />
-		</>
-	);
-};
 
 export default ContactUs;

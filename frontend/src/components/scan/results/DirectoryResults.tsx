@@ -13,7 +13,7 @@ interface DirectoryResultsProps {
 	error?: string;
 }
 
-const ROW_HEIGHT = 48;
+const ROW_HEIGHT = 40;
 const TABLE_HEIGHT = 500;
 
 const getStatusColor = (code: number) => {
@@ -56,12 +56,12 @@ const DirectoryRow = memo(function DirectoryRow({
 
 	return (
 		<div className="flex items-center hover:bg-zinc-800/50 border-b border-zinc-800/50">
-			<div className="px-4 py-3 flex-1 flex items-center gap-2 min-w-0">
+			<div className="px-4 py-2 flex-1 flex items-center gap-2 min-w-0 overflow-x-auto whitespace-nowrap [&::-webkit-scrollbar]:h-1.5 [&::-webkit-scrollbar-thumb]:bg-zinc-700/50 [&::-webkit-scrollbar-track]:bg-transparent">
 				<Folder
 					className={`w-4 h-4 shrink-0 ${isSensitive && perspective === "attacker" ? "text-red-400" : "text-zinc-500"}`}
 				/>
 				<span
-					className={`font-mono text-sm truncate ${isSensitive && perspective === "attacker" ? "text-red-400" : "text-zinc-100"}`}
+					className={`font-mono text-sm ${isSensitive && perspective === "attacker" ? "text-red-400" : "text-zinc-100"}`}
 				>
 					{result.path}
 				</span>
@@ -69,23 +69,23 @@ const DirectoryRow = memo(function DirectoryRow({
 					<Lock className="w-3 h-3 text-yellow-500 shrink-0" />
 				)}
 			</div>
-			<div className="px-4 py-3 w-20">
+			<div className="px-4 py-2 w-20">
 				<span
 					className={`font-mono text-sm font-medium ${getStatusColor(result.statusCode)}`}
 				>
 					{result.statusCode}
 				</span>
 			</div>
-			<div className="px-4 py-3 w-28 text-sm text-zinc-400 font-mono">
+			<div className="px-4 py-2 w-28 text-sm text-zinc-400 font-mono">
 				{result.contentLength
 					? `${(result.contentLength / 1024).toFixed(1)}KB`
 					: "—"}
 			</div>
-			<div className="px-4 py-3 w-32 text-sm text-zinc-500 truncate">
+			<div className="px-4 py-2 w-32 text-sm text-zinc-500 overflow-x-auto whitespace-nowrap [&::-webkit-scrollbar]:h-1.5 [&::-webkit-scrollbar-thumb]:bg-zinc-700/50 [&::-webkit-scrollbar-track]:bg-transparent">
 				{result.contentType || "—"}
 			</div>
 			{perspective !== "neutral" && (
-				<div className="px-4 py-3 w-48 text-xs truncate">
+				<div className="px-4 py-2 w-48 text-xs overflow-x-auto whitespace-nowrap [&::-webkit-scrollbar]:h-1.5 [&::-webkit-scrollbar-thumb]:bg-zinc-700/50 [&::-webkit-scrollbar-track]:bg-transparent">
 					{hasAI ? (
 						perspective === "attacker" ? (
 							<span className="text-red-400">
@@ -153,20 +153,20 @@ export function DirectoryResults({
 
 	const header = (
 		<div className="flex">
-			<div className="px-4 py-3 text-left text-xs font-medium text-zinc-400 uppercase flex-1">
+			<div className="px-4 py-2 text-left text-xs font-medium text-zinc-400 uppercase flex-1">
 				Path
 			</div>
-			<div className="px-4 py-3 text-left text-xs font-medium text-zinc-400 uppercase w-20">
+			<div className="px-4 py-2 text-left text-xs font-medium text-zinc-400 uppercase w-20">
 				Status
 			</div>
-			<div className="px-4 py-3 text-left text-xs font-medium text-zinc-400 uppercase w-28">
+			<div className="px-4 py-2 text-left text-xs font-medium text-zinc-400 uppercase w-28">
 				Size
 			</div>
-			<div className="px-4 py-3 text-left text-xs font-medium text-zinc-400 uppercase w-32">
+			<div className="px-4 py-2 text-left text-xs font-medium text-zinc-400 uppercase w-32">
 				Type
 			</div>
 			{perspective !== "neutral" && (
-				<div className="px-4 py-3 text-left text-xs font-medium text-zinc-400 uppercase w-48">
+				<div className="px-4 py-2 text-left text-xs font-medium text-zinc-400 uppercase w-48">
 					{perspective === "attacker"
 						? "Exposure Risk"
 						: "Hardening Notes"}

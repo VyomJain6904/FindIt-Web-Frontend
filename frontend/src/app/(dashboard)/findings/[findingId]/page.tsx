@@ -25,6 +25,8 @@ const PLACEHOLDER_FEATURES: FeatureFlags = {
 	branding_removal: false,
 	deep_scan: false,
 	custom_scan: false,
+	custom_wordlist: false,
+	cloud_enumeration: false,
 };
 
 export default function FindingDetailPage({ params }: FindingDetailPageProps) {

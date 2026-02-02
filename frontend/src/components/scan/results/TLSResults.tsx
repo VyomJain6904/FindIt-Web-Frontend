@@ -49,7 +49,7 @@ export function TLSResults({
 	}
 
 	return (
-		<div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+		<div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
 			{results.map((result, index) => {
 				const aiContext =
 					result.ai?.[
@@ -63,7 +63,7 @@ export function TLSResults({
 				return (
 					<div
 						key={`tls-${index}`}
-						className={`bg-zinc-900 rounded-xl border p-5 ${
+						className={`bg-zinc-900 rounded-xl border p-3 ${
 							!result.valid
 								? "border-red-900/50"
 								: perspective === "attacker" && hasAI
@@ -97,7 +97,7 @@ export function TLSResults({
 						<div className="mt-4 pt-4 border-t border-zinc-800 space-y-2">
 							<div className="flex items-center justify-between text-xs">
 								<span className="text-zinc-500">Subject</span>
-								<span className="text-zinc-300 truncate ml-2 max-w-[60%]">
+								<span className="text-zinc-300 overflow-x-auto whitespace-nowrap text-right flex-1 ml-2 [&::-webkit-scrollbar]:h-1.5 [&::-webkit-scrollbar-thumb]:bg-zinc-700/50 [&::-webkit-scrollbar-track]:bg-transparent">
 									{result.subject}
 								</span>
 							</div>

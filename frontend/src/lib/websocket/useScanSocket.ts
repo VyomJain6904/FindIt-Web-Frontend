@@ -15,6 +15,8 @@ import type {
 	FindingEventPayload,
 	ScanCompletedPayload,
 } from "@/types";
+import { isDemoMode } from "@/lib/demo/mode";
+import { useDemoScanSocket } from "@/lib/demo/websocket";
 
 /** Hook configuration */
 export interface UseScanSocketOptions {
@@ -63,6 +65,16 @@ export function useScanSocket(
 		onComplete,
 		onError,
 	} = options;
+
+	const isDemo = isDemoMode() || scanId === "scan-demo-001";
+
+	// Demo socket hook (always called to respect rules of hooks)
+	const demoSocket = useDemoScanSocket({
+		scanId,
+		onLog,
+		onProgress,
+		enabled: isDemo,
+	});
 
 	const [status, setStatus] = useState<WSConnectionStatus>("DISCONNECTED");
 	const [logs, setLogs] = useState<ScanLogPayload[]>([]);
@@ -166,7 +178,7 @@ export function useScanSocket(
 
 	// Auto-connect/disconnect based on enabled flag
 	useEffect(() => {
-		if (enabled && scanId) {
+		if (enabled && scanId && !isDemo) {
 			connect();
 		}
 
@@ -174,6 +186,25 @@ export function useScanSocket(
 			disconnect();
 		};
 	}, [enabled, scanId, connect, disconnect]);
+
+	if (isDemo) {
+		return {
+			status: demoSocket.isConnected ? "CONNECTED" : "CONNECTING",
+			isConnected: demoSocket.isConnected,
+			logs: demoSocket.logs,
+			progress: demoSocket.progress,
+			workers: new Map(
+				demoSocket.workers.map((w) => [
+					w.workerId,
+					{ ...w, scanId } as WorkerEventPayload,
+				]),
+			),
+			latestFinding: null,
+			connect: () => {},
+			disconnect: () => {},
+			clearLogs: () => {},
+		};
+	}
 
 	return {
 		status,

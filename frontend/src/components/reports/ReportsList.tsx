@@ -108,15 +108,24 @@ export function ReportsList({ reports }: ReportsListProps) {
 							</td>
 							<td className="px-5 py-4">
 								<div className="flex items-center gap-2">
-									{report.findingStats.critical > 0 && (
+									{report.findingStats.bySeverity.CRITICAL >
+										0 && (
 										<span className="text-xs text-red-400">
-											{report.findingStats.critical}{" "}
+											{
+												report.findingStats.bySeverity
+													.CRITICAL
+											}{" "}
 											Critical
 										</span>
 									)}
-									{report.findingStats.high > 0 && (
+									{report.findingStats.bySeverity.HIGH >
+										0 && (
 										<span className="text-xs text-orange-400">
-											{report.findingStats.high} High
+											{
+												report.findingStats.bySeverity
+													.HIGH
+											}{" "}
+											High
 										</span>
 									)}
 									<span className="text-xs text-zinc-500">

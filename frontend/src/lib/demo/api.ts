@@ -33,11 +33,13 @@ function paginated<T>(items: T[], page = 1, limit = 20): PaginatedResponse<T> {
 	const start = (page - 1) * limit;
 	const end = start + limit;
 	return {
-		items: items.slice(start, end),
-		total: items.length,
-		page,
-		limit,
-		hasMore: end < items.length,
+		data: items.slice(start, end),
+		pagination: {
+			page,
+			limit,
+			total: items.length,
+			totalPages: Math.ceil(items.length / limit),
+		},
 	};
 }
 

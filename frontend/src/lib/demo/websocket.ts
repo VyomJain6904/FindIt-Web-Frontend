@@ -12,6 +12,7 @@ interface DemoScanSocketOptions {
 	scanId: string;
 	onLog?: (log: ScanLogPayload) => void;
 	onProgress?: (progress: ScanProgressPayload) => void;
+	enabled?: boolean;
 }
 
 interface DemoScanSocketReturn {
@@ -29,6 +30,7 @@ export function useDemoScanSocket({
 	scanId,
 	onLog,
 	onProgress,
+	enabled = isDemoMode(),
 }: DemoScanSocketOptions): DemoScanSocketReturn {
 	const [logs, setLogs] = useState<ScanLogPayload[]>([]);
 	const [progress, setProgress] =
@@ -37,7 +39,7 @@ export function useDemoScanSocket({
 	const logIndexRef = useRef(0);
 
 	useEffect(() => {
-		if (!isDemoMode()) return;
+		if (!enabled) return;
 
 		// Simulate connection delay
 		const connectTimeout = setTimeout(() => {
@@ -71,7 +73,7 @@ export function useDemoScanSocket({
 			clearTimeout(connectTimeout);
 			clearInterval(logInterval);
 		};
-	}, [scanId, onLog, onProgress]);
+	}, [scanId, onLog, onProgress, enabled]);
 
 	return {
 		logs,

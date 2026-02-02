@@ -15,29 +15,28 @@ const World = dynamic(
 
 export function MovingGlobe() {
 	const globeConfig = {
-		pointSize: 4,
-		globeColor: "#000000", // Pure Black
+		pointSize: 8,
+		globeColor: "#000000",
 		showAtmosphere: true,
-		atmosphereColor: "#FF79C6", // Dracula Pink
-		atmosphereAltitude: 0.12,
-		emissive: "#000000", // Pure Black (no glow on surface)
-		emissiveIntensity: 0.1,
-		shininess: 0.5,
-		polygonColor: "rgba(255, 121, 198, 0.7)", // Dracula Pink Lines
-		ambientLight: "#BD93F9", // Dracula Purple
-		directionalLeftLight: "#FF79C6", // Dracula Pink
-		directionalTopLight: "#8BE9FD", // Dracula Cyan
-		pointLight: "#50FA7B", // Dracula Green
+		atmosphereColor: "#FF79C6",
+		atmosphereAltitude: 0.2,
+		emissive: "#000000",
+		emissiveIntensity: 5,
+		shininess: 5,
+		polygonColor: "rgba(255, 121, 198, 0.7)",
+		ambientLight: "#BD93F9",
+		directionalLeftLight: "#FF79C6",
+		directionalTopLight: "#8BE9FD",
+		pointLight: "#50FA7B",
 		arcTime: 1000,
 		arcLength: 0.9,
 		rings: 1,
 		maxRings: 3,
 		initialPosition: { lat: 22.3193, lng: 114.1694 },
 		autoRotate: true,
-		autoRotateSpeed: 0.5,
+		autoRotateSpeed: 0.3,
 	};
 
-	// Dracula Palette for Arcs - PINK ONLY
 	const colors = ["#FF79C6"]; // Pink Only
 	const sampleArcs = [
 		{

@@ -21,7 +21,7 @@ export function PerspectiveToggle({
 	const perspectives: Array<{
 		id: Perspective;
 		label: string;
-		icon: React.ElementType;
+		icon: React.ComponentType<{ className?: string }>;
 		color: string;
 		activeColor: string;
 	}> = [

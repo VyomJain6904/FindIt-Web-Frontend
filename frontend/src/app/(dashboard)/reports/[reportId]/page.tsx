@@ -21,17 +21,28 @@ const placeholderReport: ReportDetail = {
 	id: "",
 	scanId: "",
 	generatedAt: new Date().toISOString(),
+	createdAt: new Date().toISOString(),
 	title: "Security Assessment Report",
 	format: "PDF" as ReportFormat,
+	status: "READY" as const,
 	target: "Loading...",
 	scanType: "QUICK" as ScanType,
 	findingStats: {
-		critical: 0,
-		high: 0,
-		medium: 0,
-		low: 0,
-		info: 0,
 		total: 0,
+		bySeverity: {
+			CRITICAL: 0,
+			HIGH: 0,
+			MEDIUM: 0,
+			LOW: 0,
+			INFO: 0,
+		},
+		byCategory: {
+			WEB: 0,
+			NETWORK: 0,
+			CLOUD: 0,
+			CONFIGURATION: 0,
+			AUTHENTICATION: 0,
+		},
 	},
 	executiveSummary: "",
 	technicalDetails: "",
@@ -42,6 +53,11 @@ const placeholderReport: ReportDetail = {
 const placeholderFeatures: FeatureFlags = {
 	report_export: true,
 	branding_removal: false,
+	ai_analysis: false,
+	deep_scan: false,
+	custom_scan: false,
+	custom_wordlist: false,
+	cloud_enumeration: false,
 };
 
 export default function ReportDetailPage({ params }: ReportDetailPageProps) {

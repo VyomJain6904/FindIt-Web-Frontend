@@ -26,6 +26,7 @@ export type WorkerType =
 	| "TLS"
 	| "DIRECTORY"
 	| "NUCLEI"
+	| "CLOUD"
 	| "AI";
 
 /** Worker execution status */

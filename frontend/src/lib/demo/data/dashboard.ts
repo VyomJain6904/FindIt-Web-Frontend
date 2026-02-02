@@ -119,4 +119,5 @@ export const DEMO_FEATURE_FLAGS: FeatureFlags = {
 	deep_scan: true,
 	custom_scan: true,
 	custom_wordlist: true,
+	cloud_enumeration: true,
 };

@@ -107,7 +107,7 @@ export function NucleiResults({
 	}
 
 	return (
-		<div className="space-y-3">
+		<div className="space-y-2">
 			{results.map((result, index) => {
 				const config = getSeverityConfig(result.severity);
 				const Icon = config.icon;
@@ -120,7 +120,7 @@ export function NucleiResults({
 				return (
 					<div
 						key={`${result.templateId}-${index}`}
-						className={`${config.bg} border ${config.border} rounded-xl p-4`}
+						className={`${config.bg} border ${config.border} rounded-xl p-3`}
 					>
 						<div className="flex items-start gap-3">
 							<Icon
@@ -146,12 +146,12 @@ export function NucleiResults({
 									))}
 								</div>
 
-								<p className="text-sm text-zinc-400 mt-1 break-all">
+								<div className="text-sm text-zinc-400 mt-1 overflow-x-auto whitespace-nowrap [&::-webkit-scrollbar]:h-1.5 [&::-webkit-scrollbar-thumb]:bg-zinc-700/50 [&::-webkit-scrollbar-track]:bg-transparent">
 									{result.matchedUrl}
-								</p>
+								</div>
 
 								{result.evidence && (
-									<pre className="mt-3 p-3 bg-zinc-950 rounded text-xs text-zinc-400 overflow-x-auto">
+									<pre className="mt-2 p-2 bg-zinc-950 rounded text-xs text-zinc-400 overflow-x-auto [&::-webkit-scrollbar]:h-1.5 [&::-webkit-scrollbar-thumb]:bg-zinc-700/50 [&::-webkit-scrollbar-track]:bg-transparent">
 										{result.evidence}
 									</pre>
 								)}
